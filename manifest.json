@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Prompt Progress",
+  "version": "1.0.0",
+  "description": "Turn prompts into visible progress on ChatGPT with a lightweight local progress tracker.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "homepage_url": "https://github.com/<YOUR_USERNAME>/prompt-progress"
+}
