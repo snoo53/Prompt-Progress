@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Prompt Progress - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="header">
+        <div>
+          <div class="title">Prompt Progress</div>
+          <div class="subtitle">Local Session Analytics</div>
+        </div>
+        <div class="actions">
+          <button id="exportBtn" class="btn">Export JSON</button>
+          <button id="clearBtn" class="btn danger">Clear History</button>
+        </div>
+      </header>
+
+      <section class="grid">
+        <div class="card" id="liveCard" style="display:none;">
+          <div class="cardTitle">Live Session</div>
+          <div class="kpis" id="liveKpis"></div>
+          <div class="muted" id="liveMeta" style="margin-top:10px;"></div>
+          <div class="summaryBox" id="liveSummary" style="margin-top:10px;"></div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Last 7 Days</div>
+          <div class="kpis" id="kpis"></div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Best Session (Last 7 Days)</div>
+          <div id="bestSession" class="muted">No sessions in the last 7 days.</div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Daily Minutes (Last 14 Days)</div>
+          <canvas id="minutesChart" width="900" height="220"></canvas>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Daily Avg Depth (Last 14 Days)</div>
+          <canvas id="depthChart" width="900" height="220"></canvas>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Depth vs Prompt Volume (Last 14 Days)</div>
+          <canvas id="depthPromptChart" width="900" height="220"></canvas>
+          <div class="muted" style="margin-top:8px;">White: depth | Blue: prompt volume (normalized)</div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Top Keywords (All Time)</div>
+          <div class="keywords" id="keywords"></div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Recent Sessions</div>
+          <div class="tableWrap">
+            <table class="table" id="sessionsTable">
+              <thead>
+                <tr>
+                  <th>Start</th>
+                  <th>Min</th>
+                  <th>Prompts</th>
+                  <th>Avg Chars</th>
+                  <th>Refine</th>
+                  <th>Structured</th>
+                  <th>Code</th>
+                  <th>Depth</th>
+                  <th>Keywords</th>
+                  <th>Summary</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="muted" id="emptyNote" style="display:none;margin-top:10px;">
+            No sessions yet. Send prompts on ChatGPT, then come back here.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="modal" class="modal" style="display:none;">
+      <div class="modalCard">
+        <div class="modalHead">
+          <div class="modalTitle">Session Summary</div>
+          <button id="modalClose" class="btn">Close</button>
+        </div>
+        <div id="modalBody" class="modalBody"></div>
+      </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>
